@@ -3,9 +3,9 @@ const { ethers } = require("hardhat");
 
 // Same token addresses, plus your pool address
 // Fill with actual addresses
-const tokenAAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-const tokenBAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
-const poolAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
+const tokenAAddress = "";
+const tokenBAddress = "";
+const poolAddress = "";
 
 async function main() {
   const tokenA = await ethers.getContractAt("IERC20", tokenAAddress);

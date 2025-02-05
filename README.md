@@ -1,13 +1,11 @@
-# Sample Hardhat Project
+# APMM
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
 
-Try running some of the following tasks:
+This project demonstrates a basic APMM implement according to the paper Probability Tokenization-A modern approach for automatic prediction market
+
+warning!! not ready for production, for demo only
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
+npx hardhat compile
+npx hardhat run scripts/
 ```

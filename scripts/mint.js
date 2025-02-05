@@ -2,9 +2,9 @@
 const { ethers } = require("hardhat");
 
 // Fill in your own deployed proxy addresses here:
-const aTokenProxyAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-const bTokenProxyAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
-const bondingCurveProxyAddress = "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9";
+const aTokenProxyAddress = "0xa6e3A62F26c4D829B4cD11342a16d46446dd9A04";
+const bTokenProxyAddress = "0xD6E68592f1c3c28E4569302d0AEF1ec78Adc7c37";
+const bondingCurveProxyAddress = "0x37BbB11Fe4Bd8acb31E5eF5E6140173FBe06373d";
 
 async function main() {
   // 1) Get contract instances
@@ -23,7 +23,7 @@ async function main() {
   // 4) Let user1 call `mintTokens` with 1 ETH
   console.log("\nUser1 minting 1 A + 1 B for 1 ETH...");
   const tx = await bondingCurve.connect(user1).mintTokens({
-    value: ethers.parseEther("1.0"), // 1 ETH
+    value: ethers.parseEther("0.1"), // 1 ETH
   });
   await tx.wait(); // wait for tx confirmation
 
