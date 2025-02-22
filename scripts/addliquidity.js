@@ -2,9 +2,9 @@
 const { ethers } = require("hardhat");
 
 // Fill with actual addresses
-const tokenAAddress = "";
-const tokenBAddress = "";
-const poolAddress = "";
+const tokenAAddress = "0xa6e3A62F26c4D829B4cD11342a16d46446dd9A04";
+const tokenBAddress = "0xD6E68592f1c3c28E4569302d0AEF1ec78Adc7c37";
+const poolAddress = "0x55c6febe58702480aDD50A930d6323F2bFB8606D";
 
 async function main() {
     // 1) Get contract instances
@@ -13,13 +13,13 @@ async function main() {
     const pool = await ethers.getContractAt("SimpleUniswapV2", poolAddress);
 
     // 2) Get signers
-    //    [deployer, user1] => deployer = address[0], user1 = address[1]
-    const [deployer, user1] = await ethers.getSigners();
+
+    const [user1] = await ethers.getSigners();
     console.log("user1 address:", user1.address);
 
     // 3) Decide how many tokens to deposit
-    const amountA = ethers.parseEther("1.0");
-    const amountB = ethers.parseEther("1.0");
+    const amountA = ethers.parseEther("0.01");
+    const amountB = ethers.parseEther("0.01");
 
     // 4) Check user1 balances before deposit
     let user1ABal = await tokenA.balanceOf(user1.address);
