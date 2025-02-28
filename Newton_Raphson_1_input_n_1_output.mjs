@@ -50,11 +50,15 @@ function deltaDifference(currentDelta, nextDelta) {
 
 // Newton–Raphson method to find Delta such that f(Delta) = 0.
 // This version clamps the next Delta to remain within the valid domain.
-function newtonMethod(r, x, w, tol = 1e-6, maxIter = 10) {
-  let Delta = 0; // initial guess
+function newtonMethod(r, x, w, tol = 1e-10, maxIter = 10) {
 
   // The valid domain for Delta is [0, min_{i}(r[i],x).
-  const domainMax = Math.min(...r, x);
+
+  const domainMax = Math.min(x, ...r.slice(1));
+
+  console.log("domainMax:",domainMax)
+  let Delta = domainMax; // initial guess
+  console.log("initial Delta guess", Delta)
 
 
   for (let iter = 0; iter < maxIter; iter++) {
@@ -68,18 +72,13 @@ function newtonMethod(r, x, w, tol = 1e-6, maxIter = 10) {
 
     let nextDelta = Delta - fValue / fDeriv;
 
-    // Clamp nextDelta to be within the valid domain [0, domainMax)
-    if (nextDelta < 0) {
-      nextDelta = 0;
-    } else if (nextDelta >= domainMax) {
-      nextDelta = domainMax - tol;
-    }
+
 
     const diff = deltaDifference(Delta, nextDelta);
 
     console.log(`Iter ${iter}: Delta = ${Delta.toFixed(7)}, f(Delta) = ${fValue.toExponential(3)}, |Δ diff| = ${diff.toExponential(3)}`);
 
-    if (Math.abs(fValue) < tol || diff < tol) {
+    if (Math.abs(fValue) < tol && diff < tol) {
       console.log(`Converged in ${iter} iterations. Final Delta = ${nextDelta.toFixed(7)}`);
       return nextDelta;
     }
@@ -99,8 +98,9 @@ function newtonMethod(r, x, w, tol = 1e-6, maxIter = 10) {
 // the algorithm solves for Δ such that tokens i1, i2, i3, …, iN are output.
 
 const r = [20, 300, 400, 50000]; // Reserves for each token
-const w = [0.4, 0.2, 0.1, 0.3];    // Weights for each token
-const x = 10;                   // Additional amount for token i1
+const w = [0.25, 0.25, 0.25, 0.25];    // Weights for each token
+const x = 10000;                   // Additional amount for token i1
+
 
 const solution = newtonMethod(r, x, w);
 console.log(solution !== null ? `Solution for Delta: ${solution}` : "No solution was found.");
